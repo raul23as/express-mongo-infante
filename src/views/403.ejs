@@ -1,0 +1,21 @@
+<%- include('partials/head') %>
+<style>
+  .err-page { min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center; }
+  .err-code { font-size:8rem;font-weight:700;color:#e53935;line-height:1;margin:0; }
+</style>
+<div class="err-page">
+  <div>
+    <i class="material-icons" style="font-size:80px;color:#e53935;">block</i>
+    <p class="err-code">403</p>
+    <h4 style="font-weight:700;">Acceso Denegado</h4>
+    <p style="color:#757575;max-width:360px;margin:10px auto 28px;">No tienes permisos para ver esta página.</p>
+    <a href="/" class="btn waves-effect waves-light">
+      <i class="material-icons left">home</i>Ir al inicio
+    </a>
+    &nbsp;
+    <button class="btn red lighten-1 waves-effect waves-light" onclick="Auth.signOut()">
+      <i class="material-icons left">exit_to_app</i>Cerrar sesión
+    </button>
+  </div>
+</div>
+<%- include('partials/footer') %>

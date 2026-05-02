@@ -1,0 +1,29 @@
+<nav>
+  <div class="nav-wrapper container">
+    <a href="/" class="brand-logo">
+      <i class="material-icons" style="vertical-align:middle;margin-right:6px">lock</i>AuthApp
+    </a>
+    <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul id="nav-links" class="right hide-on-med-and-down"></ul>
+  </div>
+</nav>
+<ul class="sidenav" id="mobile-nav"></ul>
+<script>
+(function(){
+  const user = (()=>{ try{ return JSON.parse(sessionStorage.getItem('jwt_user')); }catch{ return null; }})();
+  const isAdmin    = user?.roles?.includes('admin');
+  const isLoggedIn = !!user;
+  const links = isLoggedIn ? [
+    isAdmin
+      ? `<li><a href="/dashboard/admin"><i class="material-icons left">dashboard</i>Admin</a></li>`
+      : `<li><a href="/dashboard/user"><i class="material-icons left">home</i>Dashboard</a></li>`,
+    `<li><a href="/profile"><i class="material-icons left">person</i>Perfil</a></li>`,
+    `<li><a href="#" onclick="Auth.signOut()"><i class="material-icons left">exit_to_app</i>Salir</a></li>`,
+  ] : [
+    `<li><a href="/signIn">Iniciar sesión</a></li>`,
+    `<li><a href="/signUp">Registrarse</a></li>`,
+  ];
+  document.getElementById('nav-links').innerHTML   = links.join('');
+  document.getElementById('mobile-nav').innerHTML  = links.join('');
+})();
+</script>
